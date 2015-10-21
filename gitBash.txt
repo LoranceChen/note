@@ -1,0 +1,12 @@
+git checkout -b name： 创建并切换分支到name分支
+
+git push origin name : 将name分支上传到服务器。
+：：若name不存在，就在远端创建分支
+
+git push origin --delete <branchName> ：删除远端分支<branchName>
+
+git push origin :<branchName> ：删除远端分支<branchName>
+：:完整的意义是把空的东西上传到远端origin的<branchName>分支上。
+
+git push origin local:remote : 把local分支上传到远端的remote分支
+：：如果忽略 :remote 表示远端使用local相同的名字接受上传

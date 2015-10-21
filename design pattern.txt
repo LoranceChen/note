@@ -1,0 +1,11 @@
+Visiter Pattern
+https://sourcemaking.com/design_patterns/visitor
+示例：http://butunclebob.com/ArticleS.UncleBob.IuseVisitor
+http://www.objectmentor.com/resources/articles/visitor
+
+当有一组稳定的类簇————这个类簇中的成员不会增加操作或继续添加成员，这个类簇称为Element
+这些成员有一些操作，但现在，我们不想在每个派生类中实现这些操作，因为这些操作的具体执行会经常改变。
+在设计模式中的，这些需要改变的地方称之为“力”，它是驱动我们使用并选择合适的设计模式。
+为了方便的修改每个行为而不影响类簇成员的结构，我们把这些操作抽象出来，交给另外一个类簇中专门实现不同类型的操作。
+这个附加的类簇称为访问者Visiter，访问者类簇中根据不同的需求执行不同的操作，而之前的类簇只要使用同一的接口————接口由访问者提供。另外，Visiter类簇能够把Element类中的多种成员抽象出来。
+：：访问者模式把操作放在了额外的类簇中，但明显的是Element的返回值为固定的，所以如果让返回值能够代表各自操作的结果，那只能创建另外一簇类表示返回值（呵呵）
