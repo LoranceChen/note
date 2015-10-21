@@ -81,6 +81,7 @@ $addToSet : 避免向数组中插入重复地址
 ::coll.update({...},{"$addToSet":{"emails":{"$each":["mail1@...","mail2@...",...]})
 
 
+
 coll.upsert({url : "/blog/id=..."},{"$inc":{"pageviews":1}},true) : 更新指定doc，若不存在则创建一条文档，包含涉及的字段。
 ::ture参数表示insert的功能
 

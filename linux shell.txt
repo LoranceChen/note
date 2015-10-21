@@ -1,1 +1,1 @@
-mv oldName newName : 修改名字，将oldName的名字替换为newName
+mv oldName newName : 将oldName的名字替换为newName
