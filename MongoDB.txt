@@ -27,7 +27,7 @@ find({x:{"$lt":1,"$gt":4}) : 匹配集合中字段x的值包含小于1和大于4
 
 find({"num":{$mod:[5,1]}}) : 匹配"num"值被5整除后余数为1的文档
 
-查询中的值不能包含变量，也就是引用
+查询文档中的值不能包含变量，也就是不能包含引用
 
 find({"name":/joey/}) ：匹配name的值含有joey字符的文档
 ：：也会匹配/joey/文档本身
@@ -39,10 +39,60 @@ $size : 匹配数组的个数
 coll.remove() : 删除集合coll中的所有数据，但不包括集合本身
 
 coll.remove({"name":"joey"}) : 删除集合coll中name字段值为joey的文档
-：：{"name":"joey} 是一个查询文档
+::{"name":"joey} 是一个查询文档
 
 coll.drop() : 删除集合coll，包括集合本身
-：：与remove()方式相比，速度很快，但不能指定限制条件
+::与remove()方式相比，速度很快，但不能指定限制条件
 
 new Date().getTime() : 获取当前的时间
-：：单位是毫秒ms
+::单位是毫秒ms
+
+doc.name2 = doc.name1 : 文档doc的name2字段的值为name1的值
+::若name2不存在，则新建一个
+
+coll.update({"name":"joe"},{op}) ：对集合coll中的name=joe的字段执行{op}操作
+::{op}可以为一个新文档，表示替换查询到的文档，也可以为修改器,包括$inc,$set,
+
+$inc : 为字段的值增加或减小一个数子
+::用于数字类型
+::字段不存在就创建一个
+::对非数字类型操作会报错
+
+$set : 对字段重新赋值
+::不存在则创建
+::可以改变键的类型
+
+$unset : 删除键
+::{"$unset" : {"key": 1}}
+
+$push : 向数组字段添加值
+::update({"name":"joe"},{"$push" : {"number" : 1}})
+
+$each : 向数组中添加时，可以添加多个值
+::update({"name":"joe"},{"$push" : {"number" : {"$each": 1,2,3}})
+::{"number":{$each:1}} 同 {"number":1}
+
+$slice: 限制更新操作时数组的长度，保留最后的10条
+::嵌套在$push、"key"中。{"$push":{"top10":{value, "$slice" : -10}}}
+::值为负整数
+
+$addToSet : 避免向数组中插入重复地址
+::coll.update({...},{"$addToSet":{"emails":"com@..."})
+::coll.update({...},{"$addToSet":{"emails":{"$each":["mail1@...","mail2@...",...]})
+
+
+coll.upsert({url : "/blog/id=..."},{"$inc":{"pageviews":1}},true) : 更新指定doc，若不存在则创建一条文档，包含涉及的字段。
+::ture参数表示insert的功能
+
+$setOnInsert ： 当文档不存在时起效
+::coll.upsert({},{"$setOnInsert":{"createAt":new Date()},true})
+
+coll.update(_,_,_,true) : 更新多个文档
+::默认update只会更新第一个匹配的文档。
+
+db.runCommand({getLastError:1}) : 返回最后一次操作的相关信息
+::返回的json中key="n"所对应的值为更新操作update影响的文档数
+
+findAndModify : 先查询，再进行修改
+::db.runCommand("findAndModify":"coll","query":{},"sort":{},"update":{"$set":{"field":"value"}})
+::这是一个原子操作
