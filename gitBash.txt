@@ -30,4 +30,3 @@ git stash apply stash@{2} : 应用第二个stash
 git cherry-pick [commit_hash] : 将某次提交再次提交到当前分支
 
 git commit --amend : 覆盖上次的提交
-

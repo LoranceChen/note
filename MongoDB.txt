@@ -80,7 +80,12 @@ $addToSet : 避免向数组中插入重复地址
 ::coll.update({...},{"$addToSet":{"emails":"com@..."})
 ::coll.update({...},{"$addToSet":{"emails":{"$each":["mail1@...","mail2@...",...]})
 
+$pop : 删除数组头或尾的单个元素
+::{"$pop" : {"keys":1}} 删除数组keys中的末尾元素，-1表示从头部删除。
 
+$pull : 删除匹配的元素
+::coll.update({},{"$pull":{"keys":"hey"}}) 删除集合coll中的keys字段里面的hey元素
+::相同的匹配值都会被删除
 
 coll.upsert({url : "/blog/id=..."},{"$inc":{"pageviews":1}},true) : 更新指定doc，若不存在则创建一条文档，包含涉及的字段。
 ::ture参数表示insert的功能
@@ -97,3 +102,12 @@ db.runCommand({getLastError:1}) : 返回最后一次操作的相关信息
 findAndModify : 先查询，再进行修改
 ::db.runCommand("findAndModify":"coll","query":{},"sort":{},"update":{"$set":{"field":"value"}})
 ::这是一个原子操作
+
+$ : 定位操作符，定位查询文档已经匹配的数组元素
+::blog.update({"comments.author":"Joy"},{"$set",comments.$.author}) //$代表了匹配的下标
+::$可以表示查询中匹配的元素，如果匹配和查询条件相关考虑使用定位操作符
+
+$slice : 返回某个键匹配的数组元素的一个子集
+::find({},{"comments":{"$slice":10}}) //返回comments数组中的前10条，-10表示后10条
+::{"$slice":[3,6]} //指定偏移值和返回数量:从第4个元素开始，返回6个，不够则返回剩下的全部。
+::find的第二个参数表示想要筛选的部分，但slice只是筛选了数组的成员，并影响其他的键
