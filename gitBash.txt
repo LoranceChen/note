@@ -1,12 +1,14 @@
-git checkout -b name£º ´´½¨²¢ÇĞ»»·ÖÖ§µ½name·ÖÖ§
+git checkout -b nameï¼š åˆ›å»ºå¹¶åˆ‡æ¢åˆ†æ”¯åˆ°nameåˆ†æ”¯
 
-git push origin name : ½«name·ÖÖ§ÉÏ´«µ½·şÎñÆ÷¡£
-£º£ºÈôname²»´æÔÚ£¬¾ÍÔÚÔ¶¶Ë´´½¨·ÖÖ§
+git push origin name : å°†nameåˆ†æ”¯ä¸Šä¼ åˆ°æœåŠ¡å™¨ã€‚
+ï¼šï¼šè‹¥nameä¸å­˜åœ¨ï¼Œå°±åœ¨è¿œç«¯åˆ›å»ºåˆ†æ”¯
 
-git push origin --delete <branchName> £ºÉ¾³ıÔ¶¶Ë·ÖÖ§<branchName>
+git push origin --delete <branchName> ï¼šåˆ é™¤è¿œç«¯åˆ†æ”¯<branchName>
 
-git push origin :<branchName> £ºÉ¾³ıÔ¶¶Ë·ÖÖ§<branchName>
-£º:ÍêÕûµÄÒâÒåÊÇ°Ñ¿ÕµÄ¶«Î÷ÉÏ´«µ½Ô¶¶ËoriginµÄ<branchName>·ÖÖ§ÉÏ¡£
+git push origin :<branchName> ï¼šåˆ é™¤è¿œç«¯åˆ†æ”¯<branchName>
+ï¼š:å®Œæ•´çš„æ„ä¹‰æ˜¯æŠŠç©ºçš„ä¸œè¥¿ä¸Šä¼ åˆ°è¿œç«¯originçš„<branchName>åˆ†æ”¯ä¸Šã€‚
 
-git push origin local:remote : °Ñlocal·ÖÖ§ÉÏ´«µ½Ô¶¶ËµÄremote·ÖÖ§
-£º£ºÈç¹ûºöÂÔ :remote ±íÊ¾Ô¶¶ËÊ¹ÓÃlocalÏàÍ¬µÄÃû×Ö½ÓÊÜÉÏ´«
+git push origin local:remote : æŠŠlocalåˆ†æ”¯ä¸Šä¼ åˆ°è¿œç«¯çš„remoteåˆ†æ”¯
+ï¼šï¼šå¦‚æœå¿½ç•¥ :remote è¡¨ç¤ºè¿œç«¯ä½¿ç”¨localç›¸åŒçš„åå­—æ¥å—ä¸Šä¼ 
+
+ssh-keygen -t rsa -C "mail@address.com" : åˆ›å»ºå¯†é’¥

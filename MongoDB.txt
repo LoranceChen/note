@@ -1,48 +1,48 @@
-find(...).explain() : �ض���ѯ��ص���Ϣ
-����nscanned��ɨ������ĵ�����n��ѯ�����������millis���ĵĺ�����
+find(...).explain() : 特定查询相关的信息
+：：nscanned是扫描过的文档数，n查询结果的数量，millis消耗的毫秒数
 
-.explain().millis: ��ȡ������
+.explain().millis: 获取毫秒数
 
-find().limit(1) : ���Ʋ�ѯ�ĵ���
-�����鵽ָ������Ŀʱ���ͻ�ֹͣ
+find().limit(1) : 限制查询文档数
+：：查到指定的数目时，就会停止
 
-coll.ensureIndex({"username", 1}) : Ϊusername����������1��ʾ����
-���������Ľ���Ҳ��Ӱ��CRUD��ʱ�䣬һ�����ϵ�������Ӧ����2��
+coll.ensureIndex({"username", 1}) : 为username建立索引，1表示递增
+：：索引的建立也会影响CRUD的时间，一个集合的索引不应超过2个
 
-db.currentOp() : �鿴��ǰ����
-������ִ��һ�������ܳ�ʱ��󣬿�������һ��shell��ִ�иò����Բ鿴���ȡ��紴���������ܻ��Ǻܳ��Ĳ���
+db.currentOp() : 查看当前操作
+：：当执行一个操作很长时间后，可以在另一个shell中执行该操作以查看进度。如创建索引可能会是很长的操作
 
-coll.find().sort({"age": 1, "name": 1}) : �Ȱ������������ٰ���name����
+coll.find().sort({"age": 1, "name": 1}) : 先按照年龄排序，再按照name排序
 
-find({ : ,: , ...},{ : , : }):ָ���˲�ѯ�����ͷ����ֶεĲ�ѯ
-::���Կ���find������������������һ��������ʾ��ѯ�������ڶ���������ʾ��Ҫ���ص��ֶΡ����������ʾ���ֹ��ܡ�
+find({ : ,: , ...},{ : , : }):指定了查询条件和返会字段的查询
+::可以看作find传入了两个参数，第一个参数表示查询条件，第二个参数表示需要返回的字段。多个参数表示多种功能。
 
-$in : ��ָ���ֶν���OR����
-$or : �Զ���ֶν��л�����
-$all ��ƥ�������ֶ��еĶ��Ԫ��
-find({"name" : {... , $exist : true}}) : name�ֶδ���
+$in : 对指定字段进行OR运算
+$or : 对多个字段进行或运算
+$all ：匹配数组字段中的多个元素
+find({"name" : {... , $exist : true}}) : name字段存在
 
-find({x:{"$lt":1,"$gt":4}) : ƥ�伯�����ֶ�x��ֵ����С��1�ʹ���4���ĵ�
-�����ĵ�{x : [1,2,3,4]}�ᱻƥ�䡣
+find({x:{"$lt":1,"$gt":4}) : 匹配集合中字段x的值包含小于1和大于4的文档
+：：文档{x : [1,2,3,4]}会被匹配。
 
-find({"num":{$mod:[5,1]}}) : ƥ��"num"ֵ��5����������Ϊ1���ĵ�
+find({"num":{$mod:[5,1]}}) : 匹配"num"值被5整除后余数为1的文档
 
-��ѯ�е�ֵ���ܰ���������Ҳ��������
+查询中的值不能包含变量，也就是引用
 
-find({"name":/joey/}) ��ƥ��name��ֵ����joey�ַ����ĵ�
-����Ҳ��ƥ��/joey/�ĵ�����
-����/i ��ʾ���Դ�Сд����
-����ʹ��Prel��ƥ����� http://www.chinaunix.net/old_jh/25/159388.html ������ƥ���û���滻
+find({"name":/joey/}) ：匹配name的值含有joey字符的文档
+：：也会匹配/joey/文档本身
+：：/i 表示忽略大小写区分
+：：使用Prel的匹配规则 http://www.chinaunix.net/old_jh/25/159388.html 仅仅是匹配而没有替换
 
-$size : ƥ������ĸ���
+$size : 匹配数组的个数
 
-coll.remove() : ɾ������coll�е��������ݣ������������ϱ���
+coll.remove() : 删除集合coll中的所有数据，但不包括集合本身
 
-coll.remove({"name":"joey"}) : ɾ������coll��name�ֶ�ֵΪjoey���ĵ�
-����{"name":"joey} ��һ����ѯ�ĵ�
+coll.remove({"name":"joey"}) : 删除集合coll中name字段值为joey的文档
+：：{"name":"joey} 是一个查询文档
 
-coll.drop() : ɾ������coll���������ϱ���
-������remove()��ʽ��ȣ��ٶȺܿ죬������ָ����������
+coll.drop() : 删除集合coll，包括集合本身
+：：与remove()方式相比，速度很快，但不能指定限制条件
 
-new Date().getTime() : ��ȡ��ǰ��ʱ��
-������λ�Ǻ���ms
+new Date().getTime() : 获取当前的时间
+：：单位是毫秒ms
