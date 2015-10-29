@@ -1,1 +1,3 @@
 mv oldName newName : 将oldName的名字替换为newName
+
+[mac] source /etc/profile : 重新载入/etc/profile文件
