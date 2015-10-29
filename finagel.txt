@@ -1,0 +1,3 @@
+Future[A].map(A => B) : 执行同步操作
+Future[A].flatMap(A => Future[A]) : 执行异步操作
+
