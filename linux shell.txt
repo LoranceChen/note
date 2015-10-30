@@ -1,3 +1,10 @@
 mv oldName newName : 将oldName的名字替换为newName
 
 [mac] source /etc/profile : 重新载入/etc/profile文件
+
+service network-manager restart : 重启网络服务
+
+/etc/hostname : 主机名
+/etc/hosts : 地址-主机名映射
+
+
