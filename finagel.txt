@@ -1,3 +1,5 @@
 Future[A].map(A => B) : 执行同步操作
 Future[A].flatMap(A => Future[A]) : 执行异步操作
 
+onSuccess { rst => val newFu = Future{...}; newFu onSuccess ....} : 执行一系列的操作
+：：flatMap更适合，在onSuccess中并不会保留结果
