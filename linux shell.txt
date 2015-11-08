@@ -7,4 +7,5 @@ service network-manager restart : 重启网络服务
 /etc/hostname : 主机名
 /etc/hosts : 地址-主机名映射
 
-
+!1203 : 使用1203条历史指令
+：：history可以查看历史信息
