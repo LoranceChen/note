@@ -33,3 +33,17 @@ git commit --amend : 覆盖上次的提交
 
 git remote set-url origin git@github.com:QiaoBuTang/www.git：将origin关联远端git@github.com:QiaoBuTang/www.git
 
+git branch :列出本地已经存在的分支，并且在当前分支的前面加“*”号标记
+git branch -r :列出远程分支
+git branch -a :列出本地分支和远程分支
+
+git branch -d | -D branchname :删除branchname分支
+::-d需要分支已经完全合并， -D强制删除
+
+git branch -d -r branchname :删除远程branchname分支
+
+git stash pop stash@{1} :恢复的编号为1的工作现场，并删除相应现场
+git stash apply stash@{1} :同上，但不删除工作现场
+
+git stash save "msg" :保存工作现场，并标记为msg消息
+：：git stash 是省略了msg的save命令 
