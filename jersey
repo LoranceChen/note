@@ -1,2 +1,11 @@
 @Path("/")
 class ... :根目录下无法使用具体的路径匹配————只能匹配根目录本身
+
+@GET :处理HTTP Get请求
+::用@Context UriInfo = @QueryParam = @PathParam
+	     HttpHeaders hh -> hh.getRequestHeaders(); + hh.getCookies();
+
+@POST :处理Form提交
+::方法参数 MultivaluedMap<String, String> formParams = @FormParam
+
+@BeanParam :注入多种参数
