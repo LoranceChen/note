@@ -12,6 +12,8 @@ git push origin local:remote : 把local分支上传到远端的remote分支
 ：：如果忽略 :remote 表示远端使用local相同的名字接受上传
 
 ssh-keygen -t rsa -C "mail@address.com" : 创建密钥
+：：－t选择密钥类型，默认RSA密钥 
+：：－C提供一个新注释
 
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
