@@ -9,3 +9,20 @@ service network-manager restart : 重启网络服务
 
 !1203 : 使用1203条历史指令
 ：：history可以查看历史信息
+
+mv /a/a1/* /b :将a1目录下的所有文件移到/b目录下
+mv /a/a1   /b :将a1和a1目录下的所有文件移到/b目录下
+
+mkdir -p ./a/a/a :在当前目录下创建/a/a/a三层目录
+：：－p表示迭代的创建目录
+
+rm -rf ./a :删除目录a和a以内的所有文件，不做任何提示
+：：－r 向下递归的删除 －f不做提示
+
+brew ：mac下的下载工具
+：：下载地址shell中输入：
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+/字符串 :vi中的搜索字符串功能
+
+source ./.zshrc 执行./zshrc文件
