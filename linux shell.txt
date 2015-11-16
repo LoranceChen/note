@@ -26,3 +26,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 /字符串 :vi中的搜索字符串功能
 
 source ./.zshrc 执行./zshrc文件
+
+env :当前的环境变量
+：：set 当前shell设置的环境变量
+：：export 使系统在创建每一个新的shell时定义这个变量的一个拷贝
