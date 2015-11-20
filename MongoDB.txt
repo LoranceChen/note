@@ -114,3 +114,8 @@ $slice : 返回某个键匹配的数组元素的一个子集
 
 use mydb 
 db.dropDatabase() :删除mydb数据库
+
+{ <field>: {/^pattern$/} } :完全匹配pattern字符串
+：：^表示以pattern字符串开头
+：：$表示以pattern字符串结尾
+：：mongo会从数据库中匹配/^pattern$/字符串，所以在保存时做出额外的处理后，放入mongo数据库。
