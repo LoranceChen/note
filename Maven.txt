@@ -1,0 +1,4 @@
+<packaging>pom</packaging>: 所有带有子模块的项目的packaging都为pom
+:: 包含的子模块用<modules/>表示  
+
+scala -cp handjob.jar scala.ScalaMain

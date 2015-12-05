@@ -35,6 +35,7 @@ git commit --amend : 覆盖上次的提交
 
 git remote set-url origin git@github.com:QiaoBuTang/www.git：将origin关联远端git@github.com:QiaoBuTang/www.git
 
+git remote add origin https://github.com/Unlimited-Works/database.git : 添加一个远端
 git branch :列出本地已经存在的分支，并且在当前分支的前面加“*”号标记
 git branch -r :列出远程分支
 git branch -a :列出本地分支和远程分支
@@ -49,3 +50,9 @@ git stash apply stash@{1} :同上，但不删除工作现场
 
 git stash save "msg" :保存工作现场，并标记为msg消息
 ：：git stash 是省略了msg的save命令 
+
+git stash drop :删除顶端的一条记录
+：：与save操作对应
+：：后面接stash@{2}: 表示删除标记为｛2｝的记录
+
+

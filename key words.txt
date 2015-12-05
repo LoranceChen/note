@@ -1,0 +1,8 @@
+RC : Release Candidate(候补) or ready to release unless fatal（致命的） bugs emerge（浮现）
+::RC是接着beta测试之后的环节。
+::after RC comes RTM - release to manufacturer（生产商）.
+
+DTO: Data Transfer Object
+DAO: Data Access Object
+DCO: Data Container Object
+

@@ -32,3 +32,8 @@ env :当前的环境变量
 ：：export 使系统在创建每一个新的shell时定义这个变量的一个拷贝
 
 top ：查看系统资源使用情况
+
+chmod a+x file.txt: 对所有用户增加操作file.txt的执行权限。
+：：u=x 将用户对该文件的操作权限设定为x
+：：chmod u=rwx,g=rx,o=r myfile 同 chmod 754 myfile
+：：4: read， 2：write，1:execute， 0: no permission

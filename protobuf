@@ -6,3 +6,9 @@ MessageType.EnumType ： 在枚举的其他消息文件中使用该枚举
 
 import "myproject/other_protos.proto"; ：在当前文件中导入其他proto文件
 ：：复用其他文件中定义的消息
+
+protoc -I=./account/src/main/proto --java_out=./account/src/main/java/ ./account/src/main/proto/account.proto ：编译
+
+3.0版本取消了optional和required关键字
+：：默认为optional，一方面是为了灵活性————发送和接收的数据可能有略微的差异；另一方面，没人能预测以后会传递什么数据，或者说那一个字段是必须的。
+：：一个协议更相当于一种浅泛的想法————没有什么是必须的。
