@@ -1,0 +1,2 @@
+$(document).ready(function(){…} 
+：：防止文档在完全加载（就绪）之前运行 jQuery 代码

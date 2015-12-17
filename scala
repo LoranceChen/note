@@ -30,3 +30,6 @@ actorOf(Props(new MyActor("...")), name = "myactor”): 实例化有参数Actor
 val `x-x` = 1: 定义一个名字为`x-x`的的变量
 ` ： Denote constant or enable arbitrary identifiers
 ` 重音号 backquote/grave accent 
+
+private关键字的权限，只能在所在内的范围内允许访问。
+：：trait中使用的private，只能在该trait中访问

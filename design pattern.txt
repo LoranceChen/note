@@ -9,3 +9,7 @@ http://www.objectmentor.com/resources/articles/visitor
 为了方便的修改每个行为而不影响类簇成员的结构，我们把这些操作抽象出来，交给另外一个类簇中专门实现不同类型的操作。
 这个附加的类簇称为访问者Visiter，访问者类簇中根据不同的需求执行不同的操作，而之前的类簇只要使用同一的接口————接口由访问者提供。另外，Visiter类簇能够把Element类中的多种成员抽象出来。
 ：：访问者模式把操作放在了额外的类簇中，但明显的是Element的返回值为固定的，所以如果让返回值能够代表各自操作的结果，那只能创建另外一簇类表示返回值（呵呵）
+
+框架的定义：
+Frameworks tend to be a mechanism for providing a discrete element of a stack
+(e.g. the ui, or the web services layer)

@@ -24,7 +24,7 @@ $or : 对多个字段进行或运算
 ::查询的目标数据需要多个字段定位
 
 $all ：匹配数组字段中的多个元素
-find({"name" : {... , $exist : true}}) : name字段存在
+find({"name" : {... , $exists : true}}) : name字段存在
 
 find({x:{"$lt":1,"$gt":4}) : 匹配集合中字段x的值包含小于1和大于4的文档
 ：：文档{x : [1,2,3,4]}会被匹配。
@@ -126,3 +126,9 @@ db.dropDatabase() :删除mydb数据库
 
 mongod -dbpath ./data/mongo/db/ : 启动mongo服务，数据的存取路径为./data/mongo/db/
 ::--host和—-port参数用来指定服务的地址
+
+db.accounts.stats(): 查看accounts文档的存储结构信息
+
+db.accounts.find({$and:[{"phone": "18817325410"},{"access":{$type: 1}}]}) : 查找手机号为18817325410，访问权限为access字段的类型为1（Double）的文档
+：：关于类型的数字表示：https://docs.mongodb.org/manual/reference/bson-types/
+：：Shell中定义一些类型：https://docs.mongodb.org/manual/core/shell-types/
