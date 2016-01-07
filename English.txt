@@ -1,1 +1,8 @@
 omit 忽略
+
+//finagle
+peculiar 特殊的
+constitute 构成
+versatile 多才多艺的
+sufficiently 充分的
+warrant 保证

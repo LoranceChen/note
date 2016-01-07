@@ -132,3 +132,45 @@ db.accounts.stats(): 查看accounts文档的存储结构信息
 db.accounts.find({$and:[{"phone": "18817325410"},{"access":{$type: 1}}]}) : 查找手机号为18817325410，访问权限为access字段的类型为1（Double）的文档
 ：：关于类型的数字表示：https://docs.mongodb.org/manual/reference/bson-types/
 ：：Shell中定义一些类型：https://docs.mongodb.org/manual/core/shell-types/
+
+db.lottery_candidates.aggregate(
+  [
+    {
+      "$match": {
+        "lottery_id": {
+          "$in": [
+            ObjectId("567bb011d4c6949e203c52c8"),
+            ObjectId("5682108d74f8d371f96489a3"),
+            ObjectId("568210b974f803470aa5f897"),
+            ObjectId("567bb011d4c6949e203c52c8")
+          ]
+        }
+      }
+    },
+    {
+      "$project":{
+        "lottery_id": 1,
+        "account_id": 1,
+        "is_winner": {
+          $ifNull: [true, false]
+        }
+      }
+    },
+    {
+      "$group": {
+      	"_id":{
+      		"lottery_id":“$lottery_id”,
+      		"is_winner":"$is_winner"
+        },
+        "account_id": "$account_id",
+        "count":{"$sum": 1 }
+      }
+    }
+  ]
+)
+
+lottery_id.name -> ("$in" -> lotteryIds) :查询多个字段的匹配方式
+
+db.doc.update({}, {$push:{array01: “value”}}) : 给doc文档的array01数组增加一个值为value的元素
+
+find{ field: { $exists: <boolean> } : 筛选出field字段存在的文档

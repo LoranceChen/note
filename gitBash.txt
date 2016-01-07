@@ -11,9 +11,8 @@ git push origin :<branchName> ：删除远端分支<branchName>
 git push origin local:remote : 把local分支上传到远端的remote分支
 ：：如果忽略 :remote 表示远端使用local相同的名字接受上传
 
-ssh-keygen -t rsa -C "mail@address.com" : 创建密钥
-：：－t选择密钥类型，默认RSA密钥 
-：：－C提供一个新注释
+ssh-keygen -t rsa -C "mail@address.com" :the 创建密钥
+：：－t选择密钥类型，默认RSA密钥 ：：－C提供一个新注释
 
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
@@ -32,7 +31,7 @@ git stash apply stash@{2} : 应用第二个stash
 git cherry-pick [commit_hash] : 将某次提交再次提交到当前分支
 
 git commit --amend : 覆盖上次的提交
-
+ß
 git remote set-url origin git@github.com:QiaoBuTang/www.git：将origin关联远端git@github.com:QiaoBuTang/www.git
 
 git remote add origin https://github.com/Unlimited-Works/database.git : 添加一个远端
@@ -55,4 +54,5 @@ git stash drop :删除顶端的一条记录
 ：：与save操作对应
 ：：后面接stash@{2}: 表示删除标记为｛2｝的记录
 
+git reset a.txt : 将a.txt文件移除暂存区
 

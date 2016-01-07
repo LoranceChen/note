@@ -1,0 +1,21 @@
+
+Filter[A, B, C, D] converts a `Service[C, D]` to a `Service[A, B]`
+
+[ThriftIn -> (String  ->  Int) -> ThriftOut]
+接收一个对于String -> Int的服务来讲，接收一个Thrift类型和返回一个Thrift类型
+是一个外在的，但是也是必要的。
+
+Filter[-ReqIn, +RepOut, +ReqOut, -RepIn] andThen
+Filter[ReqOut, RepIn, Req2, Rep2] :
+Filter[ReqIn, RepOut, Req2, Rep2]
+
+Filter[-ReqIn, +RepOut, +ReqOut, -RepIn] andThen
+Service[ReqOut, RepIn] :
+Service[ReqIn, RepOut]
+
+
+abstract class ServiceFactory[-Req, +Rep]
+        extends (ClientConnection => Future[Service[Req, Rep]])
+::For example, a connection pool would need to play a
+significant role in the Service acquisition phase
+::消费一个连接，生产一个服务·

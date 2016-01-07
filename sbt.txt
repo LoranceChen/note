@@ -1,0 +1,128 @@
+sbt——java和scala的项目管理工具
+
+~ compile : 当源文件更改时，执行compile指令
+：：~ 跟其他交互模块或者是批模块
+：：http://www.scala-sbt.org/0.13.5/docs/Getting-Started/Running.html
+
+setting
+
+clean: 删除target下的所有文件
+
+compile : 编译 src/main/scala 和 src/main/java下的所有文件
+
+test : 编译和运行所有测试
+
+reload ：重新载入sbt文件
+
+build.properties ：在 ./project文件夹下创建该文件重写scala版本
+
+历史命令
+!    相当于help，不过显示的是历史命令
+
+!!   重新执行上一条命令
+!:   显示之前执行过的所有命令（显示的内容包含这条命令自身）
+!:n  显示最近执行的n条命令（显示的内容包含这条命令自身）
+!n   执行索引为n的命令。索引可以在!:的结果中看到。
+!-n  执行这条命令之前的第n条命令
+!string 执行最近一条以'string'开头的命令
+!?string 执行最近一条包含'string'的命令
+
+build.sbt中不能定义顶级的val,object,class和方法，只能改变预先定义的值。
+
+libraryDependencies += groupID % artifactID % revision  ：添加依赖库
+：：revison可选为2.9.+ or [1.0,)表示选取一个最新的空缺版本
+
+inspect ： ？？？
+
+:= ：替换一个值
++= ： 追加一个值
+++= ： 追加一个序列
+
+TODO
+ivyScala
+
+resolvers：添加额外的仓库地址
+：：提供了四种形式的访问方式，ssh，sftp，https，file
+http://www.scala-sbt.org/0.13/docs/Resolvers.html
+
+externalResolvers := Resolver.withDefaultResolvers(resolvers.value, mavenCentral = false) : 禁用Maven Central 仓库
+
+publishTo : 发布到仓库
+：：http://www.scala-sbt.org/0.13/docs/Publishing.html
+
+publishLocal ：发布到本地仓库
+：：version必须以SNAPSHOT结束
+：：默认的发布路径为${user.home}/.ivy2/local
+：：可以为其他的项目添加依赖
+
+libraryDependencies
+
+ += "org.me" %% "my-project" % "0.1-SNAPSHOT"
+
+：：除了一些特殊的匹配（包括SNAPSHOT结尾的匹配），ivy会检查发布的版本号是否已缓存，并决定是否更新。这一条不仅针对publishLocal
+
+mainClass in Compile := Some("myPackage.aMainClass”) : Compile阶段使用的mainClass的位置是myPackage.aMainClass
+：：mainClass in (Compile, run) := Some("prog.Main”)细分任务
+：：mainClass in (Compile, packageBin) := Some("myPackage.anotherMainClass")
+
+scope:
+each key can have an associated value in more than one context
+1Projects
+
++=和++=操作符：
+If the T inSettingKey[T] is a sequence, i.e. the key’s value type is a sequence, you can append to the sequence rather than replacing it.
+eg:libraryDependencies
+
+:=
+The := method on key name returns a Setting, specifically a Setting[String].
+
+使用 lazy val 而不是 val 可以避免初始化顺序的问题。
+
+project in file(".")
+::keys 会调用一个重载的 in 方法设置 scope
+::所有的 key 都有 name 和 scope 组成（scope 有三个轴）。换句话说，packageOptions in (Compile, packageBin) 是表示 key name 的完整的表达式。
+::对于没有 in 方法的 key，会隐式的假设一个 scope：当前的 project，global config，global task
+
+sourceDirectories in Compile :指定变异的源文件
+：：通过 +=new File(“path")来增加除了src/main/scala/以外的文件
+
+name.value ： 获取一个settings的值
+：：.value操作只能在:= += ++=操作的参数中
+::value引用值，在处理键的依赖关系中用到
+
+Def.task 和 taskValue  ：为task追加值
+
+lib 目录下的所有依赖都会在 classpaths
+
+unmanagedBase := baseDirectory.value / “custom_lib” ： 自定义非托管目录的路径，默认为lib
+
+unmanagedJars task
+
+show test:dependencyClasspath ：
+显示test configuration scope下的dependencyClasspath的值
+
+project/*.scala：仅能存在于项目根目录下
+：：在子项目中，你不能有项目的子目录包含 project/*.scala 文件。foo/project/Build.scala 将会被忽略。
+
+> projects：列出所有项目
+> project <projectname> : 选择当前项目的作为作用域
+>subProjectID/compile : 显示指定projectID在另一个项目上执行一个compile task
+
+Scala文件：只能定义在根目录下的project/目录下
+：：.sbt文件文件不能相互可见，可以将公共部分定义在.scala下。
+
+插件的文档会指导你添加能够找到它的仓库
+
+enablePlugins(pluginName, ...): 显式定义项目需要使用的自动插件
+
+> pluginsx：显示开启的插件
+
+问题：
+where is TestNG keyword defined?
+http://www.scala-sbt.org/0.13/docs/Library-Management.html
+
+task scope
+packageSrc:
+packageOptions:
+
+what’s entire﹣build scope?

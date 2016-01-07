@@ -1,0 +1,27 @@
+heroku open : 打开app
+
+heroku logs： 查看日志
+
+system.properties ： 决定java的版本
+
+sbt compile stage： 安装app的依赖项
+
+heroku local web : 在本地启动一个Procfile类型为web的应用
+
+heroku run console: 在当前服务器的应用环境下开启一个控制台
+
+heroku config:set ENERGY="20 GeV”: 在远端设置一个环境变量
+
+scala.util.Properties.envOrElse("ENERGY", "12 GeV") ： 读取设置的环境变量名位ENERGY的值，不存在则使用: 12 GeV
+
+.env : 本地设置环境变量的文件名
+：：在该文件中添加ENERGY=20 GeV 表示增加了环境变量
+
+heroku config：查看远端环境变量
+：：DATABASE_URL ：表示应用程序连接数据库的路径
+
+heroku addons: 查看第三方服务应用，初始会包含一个Postgresql数据库
+
+heroku pg: 查看postgre数据库的详细信息
+
+conf/application.conf : 配置环境信息

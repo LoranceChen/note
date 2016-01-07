@@ -29,28 +29,7 @@ actorOf(Props(new MyActor("...")), name = "myactor”): 实例化有参数Actor
 
 val `x-x` = 1: 定义一个名字为`x-x`的的变量
 ` ： Denote constant or enable arbitrary identifiers
-` 重音号 backquote/grave accent
+` 重音号 backquote/grave accent 
 
 private关键字的权限，只能在所在内的范围内允许访问。
 ：：trait中使用的private，只能在该trait中访问
-
-ClassA.this: 获取当前作用域ClassA的引用
-：：ClassA.this represent outer class rather than annoy class.
-：：eg:
-class superThis
-class ClassA extends superThis {
-  def andthen = {
-    new ClassA {
-      println(ClassA.this.## + ":inner-ClassA.this.##")
-      println(this.## + ":inner-this.##")
-      new ClassA {
-        println(THIS.this.## + ":inner-inner-ClassA.this.##")
-        println(this.## + ":inner-this.##")
-      }
-    }
-  }
-  def getInfo = {
-    println(ClassA.this.## + ":ClassA.this.##")
-    println(this.## + ":this.##")
-  }
-}

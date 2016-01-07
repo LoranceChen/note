@@ -3,3 +3,5 @@ Future[A].flatMap(A => Future[A]) : 执行异步操作
 
 onSuccess { rst => val newFu = Future{...}; newFu onSuccess ....} : 执行一系列的操作
 ：：flatMap更适合，在onSuccess中并不会保留结果
+
+Future在返回一个最终结果之前，不应该以中间变量表示中间值。
