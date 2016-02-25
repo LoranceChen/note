@@ -1,0 +1,2 @@
+(memcachedBackend: BaseMemcached).add
+:: client.add(key, expireOption.map(_.unixTimestamp).getOrElse(0), value)

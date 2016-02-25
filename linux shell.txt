@@ -37,3 +37,7 @@ chmod a+x file.txt: 对所有用户增加操作file.txt的执行权限。
 ：：u=x 将用户对该文件的操作权限设定为x
 ：：chmod u=rwx,g=rx,o=r myfile 同 chmod 754 myfile
 ：：4: read， 2：write，1:execute， 0: no permission
+
+pgrep nginx:查看nginx进程的端口
+：：pgrep 查看nginx进程的信息
+：：http://www.th7.cn/system/lin/201311/46742.shtml

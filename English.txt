@@ -6,3 +6,17 @@ constitute 构成
 versatile 多才多艺的
 sufficiently 充分的
 warrant 保证
+spoof 欺骗
+
+http://monkey.org/~marius/funsrv.pdf
+1. semantics 语义
+2.reclamation 回收 ＃resource ～
+
+
+emphasis重要性
+
+infectious 由感染力的
+
+encapsulated包含
+
+Mandatory强制的

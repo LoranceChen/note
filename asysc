@@ -1,0 +1,55 @@
+#回调函数的缺点:
+我们有3个业务， 需要A B C 3个步骤
+同步，先定义三个方法，回调函数作为参数传入每个函数中
+define {
+ def A(param) { do ...}
+ def B(param) { do ...}
+ def C(param) { last things to do }
+}
+
+main {
+  val a = A(...)
+  val b = B(a, ..)
+  C(b, ..)
+}
+
+先定义三个方法，回调函数作为参数传入每个函数中
+define {
+  def A(param, callback) {
+    val param2 = do ...
+    callback(param2)
+  }
+  def B(param, callback) {
+    val param3 = do ...
+    callback(param3)
+  }
+  def C(param) {
+    last things to do
+  }
+}
+ 执行我们的业务:
+ main{
+  A(B(C)) // <-- 这种方式很不具有可读性，尤其是参数较多的情况下
+ }
+ 除此之外，使用回调函数的返回值并不代表最终的处理结果，所以通常返回void.
+ 我们要得到结果必须到去A B的调用相应回调之前的代码来确定每个回调传递的值。
+
+ Future解决了异步的问题可读性的问题。其返回值是一个确切可用的包含未来值的类型，而且很清楚每个阶段返回的值，
+ 比如用Future实现A B C三个步骤：
+ define {
+  def A(param): Future[X1] { ... callback}
+  def B(param): Future[X2] { ... callback}
+  def C(param): X3 { last things to do }
+ }
+ main {
+  val x3: Future[X3] =
+    A.flatMap { x1 =>
+        do ...
+        B(x1).map { x2 =>
+          do ...
+          C(x2)
+      }
+    }
+ }
+
+ A, B, C使用Future内部的返回值代表函数真是期望的返回值，唯一和同步操作不同的是它将下一个业务放在flatMap或者map中。

@@ -1,0 +1,24 @@
+对一个Actor系统的要求
+1. 自适配:根据硬件资源的不同，actor系统能够自动调节实例个数和线程分配
+2. 可弥补:当部分actor失效（比如远端服务部分失效），actor能够自主
+
+http://letitcrash.com/post/40755146949/tuning-dispatchers-in-akka-applications
+
+Bulkheading:
+ "Here we’re specifically concerned with preventing the set of actors
+ making JDBC calls from using up all of the compute resources (threads) used
+ for other operations, e.g. responding to web requests, recording metrics,
+ reporting on JVM stats, etc."
+ http://noisycode.com/blog/2014/07/27/akka-and-jdbc-to-services/
+
+ actor
+ actor为分布式做准备，一个actor是一个状态机，整个actor系统也是一个状态机。这是一种部分即整体的思想体现。
+ 如果我有10台计算资源，那么每台计算机都有处理完整业务的能力。而这里的“处理”大多意义上只是接受消息，有的计算机只是把收到的消息分发到其他计算机上，
+ 当我们把应用程序（逻辑程序和配置程序）拷贝到10台服务器之后（每台的程序都是相同的），客户端程序向任意一个服务器发送请求，都会得到正确的处理结果。
+
+ actor系统的并发思路，把一个业务逻辑拆分到不同的actor层次结构中。每一个层次都是一个可并发的处理。
+ 这很类似于future，不同点是actor像是多个future的组合。futrue通过flatmap来叠加业务逻辑，而actor利用消息来通信。从这点就能看出：
+ 1 future把业务逻辑串在一起
+ 2业务逻辑的每一段都是可并发的。
+ 对于2，只是增加了这种颗粒度。这种颗粒度的优势只能在一个逻辑能够在多线程完成时才能体现，要不然每一段并发，其实和一整个逻辑不并发没有区别。而且可能会出现因为每段业务逻辑都被线程池的低优先级而产生的延迟问题。而逻辑的相互并发，和逻辑这个词又有些违背，因为逻辑本身就是有顺序可言。也许你说并行也是一种逻辑而且适合逻辑拆分。那么
+ actor能够跨机器通信的行为也可以认为是多进程的一种体现方式。

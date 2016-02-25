@@ -1,0 +1,22 @@
+
+http://fleurer-lee.com/lyah/ready-begin.htm#德州区间
+函数式编程的一般思路：先取一个初始的集合并将其变形，执行过滤条件，最终取得正确的结果。
+
+ghci> :t 'a' : :t输出表达式的类型
+：：输出'a' :: Char
+：：检查中缀函数的类型要用括号
+    如查看==函数的类型 :t (==)
+
+error “Some ERROR”： 抛出一个“Some ERROR”的描述，并让程序崩溃
+
+通过反单引号，我们不仅可以以中缀形式调用函数，也可以在定义函数的时候使用它。
+：：定义并实现一个myCompare函数
+：：myCompare :: (Ord a) => a -> a -> Ordering
+：：a `myCompare` b ...
+
+where : 绑定表达式中的变量
+let : 绑定本身是个表达式，而where绑定则是个语法结构。
+case : 函数参数的模式匹配只能在定义函数时使用，而case表达式可以用在任何地方。
+
+Hoogle : 检索标准库函数
+::https://www.haskell.org/hoogle/

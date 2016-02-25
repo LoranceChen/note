@@ -126,3 +126,13 @@ packageSrc:
 packageOptions:
 
 what’s entire﹣build scope?
+
+packageDoc::artifactPath : tasks轴上的artifactPath key
+compile:compile : configuration轴上的compile key
+root/compile:compile : project轴上的compile
+
+inspect中的信息
+inspect compile
+1 Related:
+  test:compile
+  ：：compile:compile task被执行时,还有一个test:compile task

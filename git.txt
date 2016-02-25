@@ -31,7 +31,7 @@ git stash apply stash@{2} : 应用第二个stash
 git cherry-pick [commit_hash] : 将某次提交再次提交到当前分支
 
 git commit --amend : 覆盖上次的提交
-ß
+
 git remote set-url origin git@github.com:QiaoBuTang/www.git：将origin关联远端git@github.com:QiaoBuTang/www.git
 
 git remote add origin https://github.com/Unlimited-Works/database.git : 添加一个远端
@@ -48,7 +48,7 @@ git stash pop stash@{1} :恢复的编号为1的工作现场，并删除相应现
 git stash apply stash@{1} :同上，但不删除工作现场
 
 git stash save "msg" :保存工作现场，并标记为msg消息
-：：git stash 是省略了msg的save命令 
+：：git stash 是省略了msg的save命令
 
 git stash drop :删除顶端的一条记录
 ：：与save操作对应
@@ -56,3 +56,11 @@ git stash drop :删除顶端的一条记录
 
 git reset a.txt : 将a.txt文件移除暂存区
 
+github 仓库 按t会进入搜索指定文件的环境
+
+git commit --amend: 覆盖上次的提交
+
+git fetch origin master : 获取origin上的master到本地对应的分支
+：：默认fetch到同名分支
+
+git merge origin/master : 合并origin/master到当前分支
