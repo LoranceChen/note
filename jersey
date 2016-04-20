@@ -9,3 +9,6 @@ class ... :根目录下无法使用具体的路径匹配————只能匹配
 ::方法参数 MultivaluedMap<String, String> formParams = @FormParam
 
 @BeanParam :注入多种参数
+
+关于url的编码，服务端收到的参数总是经过解码过的
+：：如果服务器需要在多个链接之间传递一个编码的url，必须每次传递的过程都要编码

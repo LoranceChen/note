@@ -1,0 +1,4 @@
+js：
+function funcName() {} 和 val funcName = function(){}
+：：前一种会预先处理，后一种会被顺序处理。
+：：对后者的调用要放在其定义后，而前者没有要求

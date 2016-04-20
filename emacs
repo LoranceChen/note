@@ -9,6 +9,7 @@ FILE operation
 C-x C-f : open file
 C-x C-s : save file
 C-x C-w : save file as
+C-x C-c : quit/exit
 
 BUFFER operation
 C-x k : kill/close a buffer

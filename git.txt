@@ -11,7 +11,7 @@ git push origin :<branchName> ：删除远端分支<branchName>
 git push origin local:remote : 把local分支上传到远端的remote分支
 ：：如果忽略 :remote 表示远端使用local相同的名字接受上传
 
-ssh-keygen -t rsa -C "mail@address.com" :the 创建密钥
+ssh-keygen -t rsa -C "mail@address.com" : 创建密钥
 ：：－t选择密钥类型，默认RSA密钥 ：：－C提供一个新注释
 
 git config --global user.name "John Doe"
@@ -64,3 +64,13 @@ git fetch origin master : 获取origin上的master到本地对应的分支
 ：：默认fetch到同名分支
 
 git merge origin/master : 合并origin/master到当前分支
+
+git pull --rebase : 不将合并作为一次提交记录
+git rebase origin/master : 相比merge，rebase把当前的提交记录复制到master上
+git rebase -i origin/mater : 手动合并分支
+:: 在选择界面将pick改成squash能合并多个提交
+
+git checkout hello.py : 将hello.py文件的状态变为stage中的状态
+
+git checkout --track origin/daves_branch ：创建一个关联远端的本地daves_branch分支
+：：等价于 1)

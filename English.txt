@@ -20,3 +20,8 @@ infectious 由感染力的
 encapsulated包含
 
 Mandatory强制的
+
+idempotent幂等：calling it more times has some effect as calling it only once.
+analogy类比
+
+Dude: 老兄（口语）

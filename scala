@@ -54,3 +54,16 @@ class ClassA extends superThis {
     println(this.## + ":this.##")
   }
 }
+
+class Foo private[package] (param: ...) {
+  /* class body goes here... */
+}
+::declare the default constructor as private
+
+scala> :paste
+//Entering paste mode (ctrl-D to finish)
+
+scala.tools.nsc.Properties.versionString: 输出运行环境下scala的版本号
+
+def a(x : => Unit){x}： 定义一个含by-name参数的函数
+a(() => println("DONE 1"))：这里不会输出DONE 1，因为执行x实际返回了一个lambda表达式，而不是一个可用的计算。

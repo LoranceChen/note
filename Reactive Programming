@@ -1,0 +1,4 @@
+ConnectableObservable.map不具有传递性
+：：即map后，返回一个冷Observable
+
+冷Observable在每次事件发生的时候执行每个嵌套的map

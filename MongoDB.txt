@@ -17,8 +17,8 @@ coll.find().sort({"age": 1, "name": 1}) : 先按照年龄排序，再按照name�
 find({ : ,: , ...},{ : , : }):指定了查询条件和返会字段的查询
 ::可以看作find传入了两个参数，第一个参数表示查询条件，第二个参数表示需要返回的字段。多个参数表示多种功能。
 
-$in : 对指定字段进行OR运算
-::查询一个键的多个值
+$in : 对指定字段进行OR运算,查询一个键的多个值
+::db.account.find{ name: { $in: [“a”, "b", "c" ] } }: 查找account表中name字段为"a" 或 “b” 或 ”c"的文档
 
 $or : 对多个字段进行或运算
 ::查询的目标数据需要多个字段定位
@@ -116,7 +116,7 @@ $slice : 返回某个键匹配的数组元素的一个子集
 ::{"$slice":[3,6]} //指定偏移值和返回数量:从第4个元素开始，返回6个，不够则返回剩下的全部。
 ::find的第二个参数总是表示筛选，slice筛选了数组的成员，并不影响其他的键
 
-use mydb 
+use mydb
 db.dropDatabase() :删除mydb数据库
 
 { <field>: {/^pattern$/} } :完全匹配pattern字符串
@@ -173,4 +173,14 @@ lottery_id.name -> ("$in" -> lotteryIds) :查询多个字段的匹配方式
 
 db.doc.update({}, {$push:{array01: “value”}}) : 给doc文档的array01数组增加一个值为value的元素
 
-find{ field: { $exists: <boolean> } : 筛选出field字段存在的文档
+find{ field: { $exists: <boolean> } : 筛选出field字段存在/不存在的文档
+
+>db : 查看当前正在使用的数据库
+
+db.collection.explain() : 显示执行的信息
+:: db.products.explain().count( { quantity: { $gt: 50 } } ) : 显示执行过程中的基本信息
+:: db.products.explain("executionStats").count( { quantity: { $gt: 50 } } ): 除了基本信息，还包括了执行状态，比如花费的时间
+:: db.products.explain("allPlansExecution").count( { quantity: { $gt: 50 } } ): 显示所有考虑到的状态
+
+$unset: 删除一个字段
+：：db.accounts.update({_id:ObjectId("56ef609860b2cf35dd836be4")}, {$unset:{phone:""/null}}) : 删除accounts表匹配文档的phone字段
